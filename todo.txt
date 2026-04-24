@@ -1,0 +1,8 @@
+1. dashboard view is IRAN STRIKE then under is not time display but days since
+like n days and n hours since
+2. no clockview
+3. the mock ticker price chart should have a maker says the day it happens but
+keep the visual
+
+write it to new file and mark the model use on new file and daytime seperated 
+by _

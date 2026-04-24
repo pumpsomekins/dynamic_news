@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Ultra Compact iPhone 12 mini Dashboard - Gemini 2.0 Flash</title>
+  <!-- Model: gemini-2.0-flash_2026-04-19 -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090b0e;
+      --surface: #11151a;
+      --surface-2: #151a20;
+      --border: rgba(255,255,255,0.08);
+      --text: #eef2f6;
+      --muted: #8f9aa6;
+      --teal: #56d3c7;
+      --green: #62d88f;
+      --pink: #ff6d9d;
+      --blue: #77a8ff;
+      --shadow: 0 10px 24px rgba(0,0,0,0.28);
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: #06080a;
+      font-family: 'Satoshi', sans-serif;
+      color: var(--text);
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 16px;
+    }
+
+    .phone {
+      width: 360px;
+      height: 780px;
+      border-radius: 36px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+      background: linear-gradient(180deg, #121820 0%, var(--bg) 26%);
+      position: relative;
+    }
+
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130px;
+      height: 28px;
+      background: #040506;
+      border-radius: 0 0 16px 16px;
+      z-index: 5;
+    }
+
+    .screen {
+      height: 100%;
+      padding: 16px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .statusbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 6px;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2px;
+    }
+
+    .topline h1 {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .topline p {
+      margin: 3px 0 0;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .badge {
+      min-width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .hero-band {
+      height: 128px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 8px;
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 8px;
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-height: 0;
+    }
+
+    .timer-panel,
+    .graph-mini {
+      border-radius: 14px;
+      min-height: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .timer-panel {
+      flex: 1;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        radial-gradient(circle at top left, rgba(255,109,157,0.15), transparent 70%),
+        linear-gradient(180deg, #141920, #0f1318);
+    }
+
+    .timer-label {
+      font-size: 9px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--pink);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .timer-value {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
+    }
+
+    .timer-since {
+      font-size: 9px;
+      color: var(--muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .graph-mini {
+      padding: 6px 8px 5px;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(180deg, #12161b, #0d1015);
+    }
+
+    .graph-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+      font-size: 7px;
+      line-height: 1;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .graph-unit {
+      opacity: 0.88;
+    }
+
+    .ticker {
+      min-width: 0;
+    }
+
+    .sym {
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .price-line {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .price {
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .delta {
+      font-size: 8px;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .up { color: var(--green); }
+    .down { color: var(--pink); }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      min-height: 28px;
+      display: block;
+    }
+
+    .line {
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .area {
+      opacity: 0.16;
+    }
+
+    .bars rect {
+      opacity: 0.22;
+      rx: 1;
+    }
+
+    .strike-marker {
+      stroke: var(--pink);
+      stroke-width: 1;
+      stroke-dasharray: 2,1;
+    }
+
+    .strike-text {
+      fill: var(--pink);
+      font-size: 5px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .below {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      flex: 1;
+    }
+
+    .panel {
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 10px;
+    }
+
+    .panel h2 {
+      margin: 0 0 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .watchline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 11px;
+    }
+
+    .watchline:last-child { border-bottom: 0; }
+
+    .spark {
+      height: 58px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 10px;
+      padding: 6px;
+    }
+
+    .news {
+      display: grid;
+      gap: 8px;
+    }
+
+    .news-card {
+      border-radius: 14px;
+      padding: 9px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .news-card b {
+      display: block;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .news-card span {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .bottom-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .nav-item {
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .nav-item.active {
+      color: var(--text);
+      background: rgba(86,211,199,0.12);
+      border-color: rgba(86,211,199,0.22);
+    }
+  </style>
+</head>
+<body>
+  <main class="phone" aria-label="Ultra compact mobile dashboard mockup">
+    <div class="notch" aria-hidden="true"></div>
+    <section class="screen">
+      <div class="statusbar"><span>9:41</span><span>5G 100%</span></div>
+
+      <header class="topline">
+        <div>
+          <h1>Pulse Board</h1>
+          <p>Compressed dashboard</p>
+        </div>
+        <div class="badge">●</div>
+      </header>
+
+      <section class="hero-band" aria-label="Dense band with event timer and stock graphs">
+        <div class="stack" aria-label="Event timer">
+          <article class="timer-panel">
+            <div class="timer-label">IRAN Strike</div>
+            <div class="timer-value">2d 14h</div>
+            <div class="timer-since">Since Impact</div>
+          </article>
+        </div>
+
+        <div class="stack" aria-label="Three stock graphs">
+          <article class="graph-mini">
+            <div class="ticker">
+              <div class="sym">AAPL</div>
+              <div class="price-line"><span class="price">214</span><span class="delta up">+1.8%</span></div>
+              <div class="graph-meta"><span>Day</span><span class="graph-unit">Barrels</span></div>
+            </div>
+            <svg viewBox="0 0 120 32" preserveAspectRatio="none" aria-label="AAPL micro chart">
+              <defs><linearGradient id="a1" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#62d88f"/><stop offset="100%" stop-color="#62d88f" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0 28 L120 28" stroke="rgba(255,255,255,0.05)"/>
+              <g class="bars" fill="#62d88f">
+                <rect x="4" y="19" width="4" height="9"/>
+                <rect x="14" y="14" width="4" height="14"/>
+                <rect x="24" y="17" width="4" height="11"/>
+                <rect x="34" y="11" width="4" height="17"/>
+                <rect x="44" y="15" width="4" height="13"/>
+                <rect x="54" y="9" width="4" height="19"/>
+                <rect x="64" y="13" width="4" height="15"/>
+                <rect x="74" y="8" width="4" height="20"/>
+                <rect x="84" y="12" width="4" height="16"/>
+                <rect x="94" y="6" width="4" height="22"/>
+                <rect x="104" y="10" width="4" height="18"/>
+              </g>
+              <path class="area" d="M0 23 C15 22,22 18,35 19 S57 16,72 12 S95 9,120 5 L120 32 L0 32 Z" fill="url(#a1)"/>
+              <path class="line" d="M0 23 C15 22,22 18,35 19 S57 16,72 12 S95 9,120 5" stroke="#62d88f"/>
+              <line x1="58" y1="0" x2="58" y2="32" class="strike-marker" />
+              <text x="60" y="8" class="strike-text">STRIKE</text>
+            </svg>
+          </article>
+          <article class="graph-mini">
+            <div class="ticker">
+              <div class="sym">TSLA</div>
+              <div class="price-line"><span class="price">181</span><span class="delta down">-0.9%</span></div>
+              <div class="graph-meta"><span>Week</span><span class="graph-unit">Barrels</span></div>
+            </div>
+            <svg viewBox="0 0 120 32" preserveAspectRatio="none" aria-label="TSLA micro chart">
+              <defs><linearGradient id="a2" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ff6d9d"/><stop offset="100%" stop-color="#ff6d9d" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0 28 L120 28" stroke="rgba(255,255,255,0.05)"/>
+              <g class="bars" fill="#ff6d9d">
+                <rect x="4" y="7" width="4" height="21"/>
+                <rect x="14" y="11" width="4" height="17"/>
+                <rect x="24" y="9" width="4" height="19"/>
+                <rect x="34" y="14" width="4" height="14"/>
+                <rect x="44" y="12" width="4" height="16"/>
+                <rect x="54" y="16" width="4" height="12"/>
+                <rect x="64" y="15" width="4" height="13"/>
+                <rect x="74" y="19" width="4" height="9"/>
+                <rect x="84" y="18" width="4" height="10"/>
+                <rect x="94" y="22" width="4" height="6"/>
+                <rect x="104" y="20" width="4" height="8"/>
+              </g>
+              <path class="area" d="M0 6 C14 9,24 13,35 14 S58 17,73 20 S96 24,120 27 L120 32 L0 32 Z" fill="url(#a2)"/>
+              <path class="line" d="M0 6 C14 9,24 13,35 14 S58 17,73 20 S96 24,120 27" stroke="#ff6d9d"/>
+              <line x1="58" y1="0" x2="58" y2="32" class="strike-marker" />
+              <text x="60" y="8" class="strike-text">STRIKE</text>
+            </svg>
+          </article>
+          <article class="graph-mini">
+            <div class="ticker">
+              <div class="sym">NVDA</div>
+              <div class="price-line"><span class="price">948</span><span class="delta up">+3.4%</span></div>
+              <div class="graph-meta"><span>Month</span><span class="graph-unit">Barrels</span></div>
+            </div>
+            <svg viewBox="0 0 120 32" preserveAspectRatio="none" aria-label="NVDA micro chart">
+              <defs><linearGradient id="a3" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#77a8ff"/><stop offset="100%" stop-color="#77a8ff" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0 28 L120 28" stroke="rgba(255,255,255,0.05)"/>
+              <g class="bars" fill="#77a8ff">
+                <rect x="4" y="21" width="4" height="7"/>
+                <rect x="14" y="18" width="4" height="10"/>
+                <rect x="24" y="19" width="4" height="9"/>
+                <rect x="34" y="15" width="4" height="13"/>
+                <rect x="44" y="14" width="4" height="14"/>
+                <rect x="54" y="12" width="4" height="16"/>
+                <rect x="64" y="10" width="4" height="18"/>
+                <rect x="74" y="9" width="4" height="19"/>
+                <rect x="84" y="7" width="4" height="21"/>
+                <rect x="94" y="5" width="4" height="23"/>
+                <rect x="104" y="4" width="4" height="24"/>
+              </g>
+              <path class="area" d="M0 25 C14 23,25 20,36 17 S59 15,74 10 S95 7,120 3 L120 32 L0 32 Z" fill="url(#a3)"/>
+              <path class="line" d="M0 25 C14 23,25 20,36 17 S59 15,74 10 S95 7,120 3" stroke="#77a8ff"/>
+              <line x1="58" y1="0" x2="58" y2="32" class="strike-marker" />
+              <text x="60" y="8" class="strike-text">STRIKE</text>
+            </svg>
+          </article>
+        </div>
+      </section>
+
+      <section class="below">
+        <article class="panel">
+          <h2>Watchlist</h2>
+          <div class="watchline"><span>AMZN</span><span class="up">+0.7%</span></div>
+          <div class="watchline"><span>META</span><span class="up">+1.1%</span></div>
+          <div class="watchline"><span>MSFT</span><span class="down">-0.2%</span></div>
+          <div class="watchline"><span>GOOG</span><span class="up">+0.5%</span></div>
+          <div class="watchline"><span>NFLX</span><span class="down">-1.3%</span></div>
+        </article>
+
+        <article class="panel">
+          <h2>Overview</h2>
+          <div class="spark">
+            <svg viewBox="0 0 140 46" preserveAspectRatio="none" aria-label="Overview sparkline">
+              <defs><linearGradient id="a4" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#56d3c7"/><stop offset="100%" stop-color="#56d3c7" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0 38 C18 34,28 24,45 26 S72 18,90 13 S116 10,140 5 L140 46 L0 46 Z" fill="url(#a4)" opacity="0.18"/>
+              <path d="M0 38 C18 34,28 24,45 26 S72 18,90 13 S116 10,140 5" fill="none" stroke="#56d3c7" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="news">
+            <div class="news-card"><b>Risk</b><span>Tech concentration still too high.</span></div>
+            <div class="news-card"><b>Signal</b><span>Momentum is strong, but stretched.</span></div>
+          </div>
+        </article>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Bottom navigation">
+        <div class="nav-item active">Home</div>
+        <div class="nav-item">Track</div>
+        <div class="nav-item">Trade</div>
+        <div class="nav-item">More</div>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>

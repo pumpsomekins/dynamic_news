@@ -1,0 +1,9 @@
+1. make some mock finance news underneath the dashboard
+2. use knowledge to termine how to best include these two features: I.turn the finance news
+into simple langue(i.e. how would it impact the gas price and everyday price,
+would it cost more to take loan（then just saying interests go high)) II. include buttons
+to make AI summary for what happen with similar news in the past and what could
+go for future 
+
+take the newest file on current path(do not look into any other folders) and write it to new file and mark the model use on new file and daytime seperated 
+by _

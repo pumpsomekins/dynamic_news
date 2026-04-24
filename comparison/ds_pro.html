@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Ultra Compact iPhone 12 mini Dashboard - claude-sonnet-4-6 2026-04-19_15-16</title>
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #090b0e;
+            --surface: #11151a;
+            --surface-2: #151a20;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #eef2f6;
+            --muted: #8f9aa6;
+            --teal: #56d3c7;
+            --green: #62d88f;
+            --pink: #ff6d9d;
+            --blue: #77a8ff;
+            --orange: #f6a83c;
+            --shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --gradient-start: #121820;
+        }
+
+        [data-theme="light"] {
+            --bg: #f4f7fa;
+            --surface: #ffffff;
+            --surface-2: #edf2f7;
+            --border: rgba(0, 0, 0, 0.08);
+            --text: #1a202c;
+            --muted: #718096;
+            --shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+            --card-bg: rgba(0, 0, 0, 0.02);
+            --gradient-start: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+            background: var(--bg);
+            font-family: 'Satoshi', sans-serif;
+            color: var(--text);
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px;
+            gap: 20px;
+        }
+
+        /* ── Phone shell ── */
+        .phone {
+            width: 360px;
+            height: 780px;
+            border-radius: 36px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(180deg, var(--gradient-start) 0%, var(--bg) 26%);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 28px;
+            background: #000;
+            border-radius: 0 0 16px 16px;
+            z-index: 5;
+        }
+
+        .screen {
+            height: 100%;
+            padding: 16px 12px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .statusbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6px;
+            margin-top: 10px;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+        }
+
+        .topline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2px;
+            flex-shrink: 0;
+        }
+        .topline h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+        .topline p {
+            margin: 3px 0 0;
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .theme-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            user-select: none;
+        }
+
+        .hero-band {
+            height: 128px;
+            border-radius: 22px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            padding: 8px;
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        /* ── Scrollable middle area ── */
+        .scroll-area {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 0;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            padding-right: 2px;
+        }
+
+        .scroll-area::-webkit-scrollbar {
+            width: 3px;
+        }
+        .scroll-area::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 10px;
+        }
+        .scroll-area::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .stack {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-height: 0;
+        }
+
+        .event-pill {
+            flex: 1;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            padding: 4px 7px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1px;
+            overflow: hidden;
+        }
+        .ev-tag {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+        .ev-tag.fed {
+            color: var(--orange);
+        }
+        .ev-tag.ern {
+            color: var(--pink);
+        }
+        .ev-tag.gdp {
+            color: var(--blue);
+        }
+        .ev-time {
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.1;
+            font-variant-numeric: tabular-nums;
+        }
+        .ev-status {
+            font-size: 6px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+        .ev-status.past {
+            color: var(--muted);
+        }
+        .ev-status.now {
+            color: var(--green);
+        }
+        .ev-status.next {
+            color: var(--teal);
+        }
+
+        .graph-mini {
+            border-radius: 14px;
+            min-height: 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            padding: 6px 8px 5px;
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            align-items: center;
+            gap: 6px;
+        }
+        .graph-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4px;
+            margin-top: 2px;
+            font-size: 7px;
+            line-height: 1;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .graph-unit {
+            color: var(--blue);
+            font-weight: 700;
+        }
+        .ticker {
+            min-width: 0;
+        }
+        .sym-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        .sym {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+        .tf-badge {
+            font-size: 6px;
+            background: var(--card-bg);
+            padding: 1px 3px;
+            border-radius: 3px;
+            border: 0.5px solid var(--border);
+            color: var(--muted);
+        }
+        .price-line {
+            display: flex;
+            align-items: baseline;
+            gap: 2px;
+            white-space: nowrap;
+        }
+        .price {
+            font-size: 9px;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+        }
+        .delta {
+            font-size: 7px;
+            font-weight: 700;
+        }
+        .up {
+            color: var(--green);
+        }
+        .down {
+            color: var(--pink);
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            min-height: 28px;
+            display: block;
+        }
+        .line {
+            fill: none;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .area {
+            opacity: 0.12;
+        }
+        .bars rect {
+            opacity: 0.18;
+        }
+
+        .strike-fed {
+            stroke: var(--orange);
+            stroke-width: 1;
+            stroke-dasharray: 2, 1;
+        }
+        .strike-ern {
+            stroke: var(--pink);
+            stroke-width: 1;
+            stroke-dasharray: 2, 1;
+        }
+        .strike-gdp {
+            stroke: var(--blue);
+            stroke-width: 1;
+            stroke-dasharray: 2, 1;
+        }
+        .strike-text-fed {
+            fill: var(--orange);
+            font-size: 5px;
+            font-weight: 700;
+        }
+        .strike-text-ern {
+            fill: var(--pink);
+            font-size: 5px;
+            font-weight: 700;
+        }
+        .strike-text-gdp {
+            fill: var(--blue);
+            font-size: 5px;
+            font-weight: 700;
+        }
+
+        .below {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .panel {
+            border-radius: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            padding: 10px;
+        }
+        .panel h2 {
+            margin: 0 0 8px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+        }
+        .watchline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 11px;
+        }
+        .watchline:last-child {
+            border-bottom: 0;
+        }
+        .spark {
+            height: 58px;
+            border-radius: 14px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            margin-bottom: 10px;
+            padding: 6px;
+        }
+        .news {
+            display: grid;
+            gap: 8px;
+        }
+        .news-card {
+            border-radius: 14px;
+            padding: 9px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+        }
+        .news-card b {
+            display: block;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+        .news-card span {
+            display: block;
+            font-size: 10px;
+            color: var(--muted);
+            line-height: 1.3;
+        }
+
+        .bottom-nav {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .nav-item {
+            height: 44px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            font-size: 10px;
+        }
+        .nav-item.active {
+            color: var(--text);
+            background: rgba(86, 211, 199, 0.1);
+            border-color: var(--teal);
+        }
+
+        /* ── Inline Finance News Feed (inside phone scroll-area) ── */
+        .inline-news-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-shrink: 0;
+            padding-bottom: 2px;
+        }
+
+        .inline-feed-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2px;
+        }
+        .inline-feed-header h2 {
+            margin: 0;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .inline-feed-tag {
+            font-size: 7px;
+            padding: 2px 6px;
+            border-radius: 20px;
+            background: rgba(86, 211, 199, 0.1);
+            border: 1px solid var(--teal);
+            color: var(--teal);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .inline-news-feed .fnews-card {
+            border-radius: 14px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            padding: 9px 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .inline-news-feed .fnews-head {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .inline-news-feed .fnews-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 7px;
+            display: grid;
+            place-items: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        .inline-news-feed .fnews-icon.fed-icon {
+            background: rgba(246, 168, 60, 0.12);
+        }
+        .inline-news-feed .fnews-icon.oil-icon {
+            background: rgba(98, 216, 143, 0.12);
+        }
+        .inline-news-feed .fnews-icon.bond-icon {
+            background: rgba(119, 168, 255, 0.12);
+        }
+
+        .inline-news-feed .fnews-meta {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .inline-news-feed .fnews-headline {
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 2px;
+        }
+
+        .inline-news-feed .fnews-raw {
+            font-size: 8px;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .inline-news-feed .fnews-plain {
+            font-size: 10px;
+            line-height: 1.5;
+            color: var(--text);
+            background: var(--surface);
+            border-radius: 9px;
+            padding: 7px 9px;
+            border: 1px solid var(--border);
+        }
+        .inline-news-feed .fnews-plain b {
+            color: var(--teal);
+            font-weight: 700;
+        }
+
+        .inline-news-feed .fnews-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .inline-news-feed .ai-btn {
+            height: 26px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-family: 'Satoshi', sans-serif;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .inline-news-feed .ai-btn:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+        .inline-news-feed .ai-btn.past-btn:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+        .inline-news-feed .ai-btn.active-past {
+            border-color: var(--orange);
+            color: var(--orange);
+            background: rgba(246, 168, 60, 0.08);
+        }
+        .inline-news-feed .ai-btn.active-future {
+            border-color: var(--teal);
+            color: var(--teal);
+            background: rgba(86, 211, 199, 0.08);
+        }
+
+        .inline-news-feed .ai-summary {
+            display: none;
+            border-radius: 9px;
+            padding: 8px 10px;
+            font-size: 10px;
+            line-height: 1.5;
+            border: 1px solid var(--border);
+            animation: fadein 0.2s ease;
+        }
+        .inline-news-feed .ai-summary.past-summary {
+            background: rgba(246, 168, 60, 0.06);
+            border-color: rgba(246, 168, 60, 0.25);
+        }
+        .inline-news-feed .ai-summary.future-summary {
+            background: rgba(86, 211, 199, 0.06);
+            border-color: rgba(86, 211, 199, 0.25);
+        }
+        .inline-news-feed .ai-summary.open {
+            display: block;
+        }
+
+        .inline-news-feed .ai-label {
+            font-size: 7px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .inline-news-feed .ai-label.past {
+            color: var(--orange);
+        }
+        .inline-news-feed .ai-label.future {
+            color: var(--teal);
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+                transform: translateY(-4px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ── Phone ── -->
+    <main class="phone" aria-label="Ultra compact mobile dashboard mockup">
+        <div class="notch" aria-hidden="true"></div>
+        <section class="screen">
+            <div class="statusbar"><span>9:41</span><span>5G 100%</span></div>
+
+            <header class="topline">
+                <div>
+                    <h1>Pulse Board</h1>
+                    <p>System v3.0</p>
+                </div>
+                <div class="theme-toggle" id="themeBtn" title="Toggle Theme">◐</div>
+            </header>
+
+            <section class="hero-band" aria-label="Strike events and stock graphs">
+                <div class="stack" aria-label="Strike events">
+                    <article class="event-pill">
+                        <span class="ev-tag fed">FED</span>
+                        <span class="ev-time">2d 4h</span>
+                        <span class="ev-status past">PAST</span>
+                    </article>
+                    <article class="event-pill">
+                        <span class="ev-tag ern">ERN</span>
+                        <span class="ev-time">14h</span>
+                        <span class="ev-status now">TODAY</span>
+                    </article>
+                    <article class="event-pill">
+                        <span class="ev-tag gdp">GDP</span>
+                        <span class="ev-time">3d 12h</span>
+                        <span class="ev-status next">NEXT</span>
+                    </article>
+                </div>
+
+                <div class="stack" aria-label="Three stock graphs">
+                    <article class="graph-mini">
+                        <div class="ticker">
+                            <div class="sym-row"><span class="sym">AAPL</span><span class="tf-badge">1D</span></div>
+                            <div class="price-line"><span class="price">214</span><span class="delta up">+1.8%</span></div>
+                            <div class="graph-meta"><span>VOL</span><span class="graph-unit">GALLONS</span></div>
+                        </div>
+                        <svg viewBox="0 0 120 32" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="a1" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#62d88f" /><stop offset="100%" stop-color="#62d88f" stop-opacity="0" /></linearGradient>
+                            </defs>
+                            <g class="bars" fill="#62d88f"><rect x="4" y="19" width="4" height="9" /><rect x="14" y="14" width="4" height="14" /><rect x="24" y="17" width="4" height="11" /><rect x="34" y="11" width="4" height="17" /><rect x="44" y="15" width="4" height="13" /><rect x="54" y="9" width="4" height="19" /><rect x="64" y="13" width="4" height="15" /><rect x="74" y="8" width="4" height="20" /><rect x="84" y="12" width="4" height="16" /><rect x="94" y="6" width="4" height="22" /><rect x="104" y="10" width="4" height="18" /></g>
+                            <path class="area" d="M0 23 C15 22,22 18,35 19 S57 16,72 12 S95 9,120 5 L120 32 L0 32 Z" fill="url(#a1)" />
+                            <path class="line" d="M0 23 C15 22,22 18,35 19 S57 16,72 12 S95 9,120 5" stroke="#62d88f" />
+                            <line x1="25" y1="0" x2="25" y2="32" class="strike-fed" /><text x="27" y="7" class="strike-text-fed">FED</text>
+                            <line x1="60" y1="0" x2="60" y2="32" class="strike-ern" /><text x="62" y="7" class="strike-text-ern">ERN</text>
+                            <line x1="95" y1="0" x2="95" y2="32" class="strike-gdp" /><text x="97" y="7" class="strike-text-gdp">GDP</text>
+                        </svg>
+                    </article>
+                    <article class="graph-mini">
+                        <div class="ticker">
+                            <div class="sym-row"><span class="sym">TSLA</span><span class="tf-badge">1W</span></div>
+                            <div class="price-line"><span class="price">181</span><span class="delta down">-0.9%</span></div>
+                            <div class="graph-meta"><span>VOL</span><span class="graph-unit">GALLONS</span></div>
+                        </div>
+                        <svg viewBox="0 0 120 32" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="a2" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ff6d9d" /><stop offset="100%" stop-color="#ff6d9d" stop-opacity="0" /></linearGradient>
+                            </defs>
+                            <g class="bars" fill="#ff6d9d"><rect x="4" y="7" width="4" height="21" /><rect x="14" y="11" width="4" height="17" /><rect x="24" y="9" width="4" height="19" /><rect x="34" y="14" width="4" height="14" /><rect x="44" y="12" width="4" height="16" /><rect x="54" y="16" width="4" height="12" /><rect x="64" y="15" width="4" height="13" /><rect x="74" y="19" width="4" height="9" /><rect x="84" y="18" width="4" height="10" /><rect x="94" y="22" width="4" height="6" /><rect x="104" y="20" width="4" height="8" /></g>
+                            <path class="area" d="M0 6 C14 9,24 13,35 14 S58 17,73 20 S96 24,120 27 L120 32 L0 32 Z" fill="url(#a2)" />
+                            <path class="line" d="M0 6 C14 9,24 13,35 14 S58 17,73 20 S96 24,120 27" stroke="#ff6d9d" />
+                            <line x1="25" y1="0" x2="25" y2="32" class="strike-fed" /><text x="27" y="7" class="strike-text-fed">FED</text>
+                            <line x1="60" y1="0" x2="60" y2="32" class="strike-ern" /><text x="62" y="7" class="strike-text-ern">ERN</text>
+                            <line x1="95" y1="0" x2="95" y2="32" class="strike-gdp" /><text x="97" y="7" class="strike-text-gdp">GDP</text>
+                        </svg>
+                    </article>
+                    <article class="graph-mini">
+                        <div class="ticker">
+                            <div class="sym-row"><span class="sym">NVDA</span><span class="tf-badge">1M</span></div>
+                            <div class="price-line"><span class="price">948</span><span class="delta up">+3.4%</span></div>
+                            <div class="graph-meta"><span>VOL</span><span class="graph-unit">GALLONS</span></div>
+                        </div>
+                        <svg viewBox="0 0 120 32" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="a3" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#77a8ff" /><stop offset="100%" stop-color="#77a8ff" stop-opacity="0" /></linearGradient>
+                            </defs>
+                            <g class="bars" fill="#77a8ff"><rect x="4" y="21" width="4" height="7" /><rect x="14" y="18" width="4" height="10" /><rect x="24" y="19" width="4" height="9" /><rect x="34" y="15" width="4" height="13" /><rect x="44" y="14" width="4" height="14" /><rect x="54" y="12" width="4" height="16" /><rect x="64" y="10" width="4" height="18" /><rect x="74" y="9" width="4" height="19" /><rect x="84" y="7" width="4" height="21" /><rect x="94" y="5" width="4" height="23" /><rect x="104" y="4" width="4" height="24" /></g>
+                            <path class="area" d="M0 25 C14 23,25 20,36 17 S59 15,74 10 S95 7,120 3 L120 32 L0 32 Z" fill="url(#a3)" />
+                            <path class="line" d="M0 25 C14 23,25 20,36 17 S59 15,74 10 S95 7,120 3" stroke="#77a8ff" />
+                            <line x1="25" y1="0" x2="25" y2="32" class="strike-fed" /><text x="27" y="7" class="strike-text-fed">FED</text>
+                            <line x1="60" y1="0" x2="60" y2="32" class="strike-ern" /><text x="62" y="7" class="strike-text-ern">ERN</text>
+                            <line x1="95" y1="0" x2="95" y2="32" class="strike-gdp" /><text x="97" y="7" class="strike-text-gdp">GDP</text>
+                        </svg>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ── Scrollable area: below panels + inline news feed ── -->
+            <div class="scroll-area">
+                <section class="below">
+                    <article class="panel">
+                        <h2>Watchlist</h2>
+                        <div class="watchline"><span>AMZN</span><span class="up">+0.7%</span></div>
+                        <div class="watchline"><span>META</span><span class="up">+1.1%</span></div>
+                        <div class="watchline"><span>MSFT</span><span class="down">-0.2%</span></div>
+                        <div class="watchline"><span>GOOG</span><span class="up">+0.5%</span></div>
+                        <div class="watchline"><span>NFLX</span><span class="down">-1.3%</span></div>
+                    </article>
+
+                    <article class="panel">
+                        <h2>Overview</h2>
+                        <div class="spark">
+                            <svg viewBox="0 0 140 46" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="a4" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#56d3c7" /><stop offset="100%" stop-color="#56d3c7" stop-opacity="0" /></linearGradient>
+                                </defs>
+                                <path d="M0 38 C18 34,28 24,45 26 S72 18,90 13 S116 10,140 5 L140 46 L0 46 Z" fill="url(#a4)" opacity="0.18" />
+                                <path d="M0 38 C18 34,28 24,45 26 S72 18,90 13 S116 10,140 5" fill="none" stroke="#56d3c7" stroke-width="2.5" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <div class="news">
+                            <div class="news-card"><b>Risk</b><span>Supply chain impact pending.</span></div>
+                            <div class="news-card"><b>Signal</b><span>Volatility spiking in energy.</span></div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- ── Inline Finance News Feed ── -->
+                <section class="inline-news-feed" aria-label="Plain-language finance news">
+                    <div class="inline-feed-header">
+                        <h2>What it means for you</h2>
+                        <span class="inline-feed-tag">Live</span>
+                    </div>
+
+                    <!-- News 1: Fed rate hold -->
+                    <div class="fnews-card">
+                        <div class="fnews-head">
+                            <div class="fnews-icon fed-icon">🏦</div>
+                            <div class="fnews-meta">
+                                <div class="fnews-headline">Fed holds rates — no change this month</div>
+                                <div class="fnews-raw">FOMC pauses · rates at 5.25–5.50%</div>
+                            </div>
+                        </div>
+                        <div class="fnews-plain">
+                            <b>Your wallet:</b> Car loans, credit cards, and mortgages stay at the same rate — no new pain this month. If you've been waiting to refinance, the window isn't open yet but it's getting closer.
+                        </div>
+                        <div class="fnews-actions">
+                            <button class="ai-btn past-btn" onclick="toggleSummary(this, 'fed-past')">⏪ What happened before</button>
+                            <button class="ai-btn future-btn" onclick="toggleSummary(this, 'fed-future')">⏩ What could happen next</button>
+                        </div>
+                        <div id="fed-past" class="ai-summary past-summary">
+                            <div class="ai-label past">Similar past events</div>
+                            Last 3 Fed pauses (2023–2024): markets rallied avg +2.1% over 2 weeks. Tech stocks led. Gas prices held steady or dipped slightly as demand expectations cooled. Mortgage rates peaked within 6 weeks then began easing.
+                        </div>
+                        <div id="fed-future" class="ai-summary future-summary">
+                            <div class="ai-label future">Possible outlook</div>
+                            If pause extends to the next meeting, a rate cut could follow in Q3 — that means cheaper mortgages and car loans by fall. Watch for a cut signal in the June statement. Bond markets are pricing ~65% chance of a cut by September.
+                        </div>
+                    </div>
+
+                    <!-- News 2: Oil drop -->
+                    <div class="fnews-card">
+                        <div class="fnews-head">
+                            <div class="fnews-icon oil-icon">⛽</div>
+                            <div class="fnews-meta">
+                                <div class="fnews-headline">Oil drops 3.2% on weak demand data</div>
+                                <div class="fnews-raw">WTI crude · $78.40/bbl · ▼ $2.60</div>
+                            </div>
+                        </div>
+                        <div class="fnews-plain">
+                            <b>At the pump:</b> Gas prices could drop <b>~10¢/gal</b> in 1–2 weeks. Grocery delivery and rideshare might also get a little cheaper — fuel costs are baked into their prices.
+                        </div>
+                        <div class="fnews-actions">
+                            <button class="ai-btn past-btn" onclick="toggleSummary(this, 'oil-past')">⏪ What happened before</button>
+                            <button class="ai-btn future-btn" onclick="toggleSummary(this, 'oil-future')">⏩ What could happen next</button>
+                        </div>
+                        <div id="oil-past" class="ai-summary past-summary">
+                            <div class="ai-label past">Similar past events</div>
+                            In 5 similar oil drops since 2021: pump prices fell 8–14¢/gal within 10 days on average. Airlines passed savings to customers only when drops lasted 3+ weeks. Grocery prices lagged by 3–4 weeks.
+                        </div>
+                        <div id="oil-future" class="ai-summary future-summary">
+                            <div class="ai-label future">Possible outlook</div>
+                            If demand concerns persist, oil could test $74. That would push gas below $3.20 in most states — a meaningful relief for daily commuters. Risk: OPEC production cut could reverse the drop within weeks.
+                        </div>
+                    </div>
+
+                    <!-- News 3: Treasury yields rise -->
+                    <div class="fnews-card">
+                        <div class="fnews-head">
+                            <div class="fnews-icon bond-icon">📈</div>
+                            <div class="fnews-meta">
+                                <div class="fnews-headline">Treasury yields rise to 4.8%</div>
+                                <div class="fnews-raw">10-yr UST · 4.82% · ▲ 0.11bps</div>
+                            </div>
+                        </div>
+                        <div class="fnews-plain">
+                            <b>Home buyers:</b> Taking out a mortgage just got more expensive — 30-yr rates are likely to cross <b>7.5%</b> this week. On a $400K loan that's roughly <b>+$60/mo</b> vs last month. Renting? Your landlord's costs just went up too.
+                        </div>
+                        <div class="fnews-actions">
+                            <button class="ai-btn past-btn" onclick="toggleSummary(this, 'bond-past')">⏪ What happened before</button>
+                            <button class="ai-btn future-btn" onclick="toggleSummary(this, 'bond-future')">⏩ What could happen next</button>
+                        </div>
+                        <div id="bond-past" class="ai-summary past-summary">
+                            <div class="ai-label past">Similar past events</div>
+                            Every 0.1% yield rise in 2022–2023 added ~$55–65/mo to a $400K mortgage. Housing sales dropped 8–12% in the following month each time yields spiked above 4.5%. Landlords raised rents 3–6 months after financing costs rose.
+                        </div>
+                        <div id="bond-future" class="ai-summary future-summary">
+                            <div class="ai-label future">Possible outlook</div>
+                            If yields hold above 4.8%, expect home sales to slow and new construction to pause. Good for renters negotiating leases now — landlords may freeze hikes to retain tenants. If yields top 5%, a mini housing pullback of 5–8% in prices is possible in high-cost markets.
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <nav class="bottom-nav">
+                <div class="nav-item active">Home</div>
+                <div class="nav-item">Track</div>
+                <div class="nav-item">Trade</div>
+                <div class="nav-item">More</div>
+            </nav>
+        </section>
+    </main>
+
+    <script>
+        // Theme toggle
+        const themeBtn = document.getElementById('themeBtn');
+        const html = document.documentElement;
+        themeBtn.addEventListener('click', () => {
+            const cur = html.getAttribute('data-theme');
+            const nxt = cur === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', nxt);
+            themeBtn.textContent = nxt === 'dark' ? '◐' : '◑';
+        });
+
+        // AI summary toggle
+        function toggleSummary(btn, id) {
+            const panel = document.getElementById(id);
+            const isPast = id.endsWith('-past');
+            const activeClass = isPast ? 'active-past' : 'active-future';
+            const isOpen = panel.classList.contains('open');
+
+            // Close sibling panel of same card
+            const card = btn.closest('.fnews-card');
+            const sibling = isPast ?
+                card.querySelector('[id$="-future"]') :
+                card.querySelector('[id$="-past"]');
+            const siblingBtn = isPast ?
+                card.querySelector('.future-btn') :
+                card.querySelector('.past-btn');
+            if (sibling) sibling.classList.remove('open');
+            if (siblingBtn) siblingBtn.classList.remove('active-past', 'active-future');
+
+            panel.classList.toggle('open', !isOpen);
+            btn.classList.toggle(activeClass, !isOpen);
+
+            // Smooth scroll to keep expanded summary visible
+            if (!isOpen && panel.classList.contains('open')) {
+                setTimeout(() => {
+                    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 150);
+            }
+        }
+    </script>
+</body>
+</html>
