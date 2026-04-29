@@ -724,34 +724,6 @@
 
             <!-- ── Scrollable area: below panels + inline news feed ── -->
             <div class="scroll-area">
-                <section class="below">
-                    <article class="panel">
-                        <h2>Watchlist</h2>
-                        <div class="watchline"><span>AMZN</span><span class="up">+0.7%</span></div>
-                        <div class="watchline"><span>META</span><span class="up">+1.1%</span></div>
-                        <div class="watchline"><span>MSFT</span><span class="down">-0.2%</span></div>
-                        <div class="watchline"><span>GOOG</span><span class="up">+0.5%</span></div>
-                        <div class="watchline"><span>NFLX</span><span class="down">-1.3%</span></div>
-                    </article>
-
-                    <article class="panel">
-                        <h2>Overview</h2>
-                        <div class="spark">
-                            <svg viewBox="0 0 140 46" preserveAspectRatio="none">
-                                <defs>
-                                    <linearGradient id="a4" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#56d3c7" /><stop offset="100%" stop-color="#56d3c7" stop-opacity="0" /></linearGradient>
-                                </defs>
-                                <path d="M0 38 C18 34,28 24,45 26 S72 18,90 13 S116 10,140 5 L140 46 L0 46 Z" fill="url(#a4)" opacity="0.18" />
-                                <path d="M0 38 C18 34,28 24,45 26 S72 18,90 13 S116 10,140 5" fill="none" stroke="#56d3c7" stroke-width="2.5" stroke-linecap="round" />
-                            </svg>
-                        </div>
-                        <div class="news">
-                            <div class="news-card"><b>Risk</b><span>Supply chain impact pending.</span></div>
-                            <div class="news-card"><b>Signal</b><span>Volatility spiking in energy.</span></div>
-                        </div>
-                    </article>
-                </section>
-
                 <!-- ── Inline Finance News Feed ── -->
                 <section class="inline-news-feed" aria-label="Plain-language finance news">
                     <div class="inline-feed-header">
@@ -772,8 +744,8 @@
                             <b>Your wallet:</b> Car loans, credit cards, and mortgages stay at the same rate — no new pain this month. If you've been waiting to refinance, the window isn't open yet but it's getting closer.
                         </div>
                         <div class="fnews-actions">
-                            <button class="ai-btn past-btn" onclick="toggleSummary(this, 'fed-past')">⏪ What happened before</button>
-                            <button class="ai-btn future-btn" onclick="toggleSummary(this, 'fed-future')">⏩ What could happen next</button>
+                            <button class="ai-btn past-btn" onclick="toggleSummary(this, 'fed-past')">⏪ Past</button>
+                            <button class="ai-btn future-btn" onclick="toggleSummary(this, 'fed-future')">⏩ Future</button>
                         </div>
                         <div id="fed-past" class="ai-summary past-summary">
                             <div class="ai-label past">Similar past events</div>
@@ -798,8 +770,8 @@
                             <b>At the pump:</b> Gas prices could drop <b>~10¢/gal</b> in 1–2 weeks. Grocery delivery and rideshare might also get a little cheaper — fuel costs are baked into their prices.
                         </div>
                         <div class="fnews-actions">
-                            <button class="ai-btn past-btn" onclick="toggleSummary(this, 'oil-past')">⏪ What happened before</button>
-                            <button class="ai-btn future-btn" onclick="toggleSummary(this, 'oil-future')">⏩ What could happen next</button>
+                            <button class="ai-btn past-btn" onclick="toggleSummary(this, 'oil-past')">⏪ Past</button>
+                            <button class="ai-btn future-btn" onclick="toggleSummary(this, 'oil-future')">⏩ Future</button>
                         </div>
                         <div id="oil-past" class="ai-summary past-summary">
                             <div class="ai-label past">Similar past events</div>
@@ -824,8 +796,8 @@
                             <b>Home buyers:</b> Taking out a mortgage just got more expensive — 30-yr rates are likely to cross <b>7.5%</b> this week. On a $400K loan that's roughly <b>+$60/mo</b> vs last month. Renting? Your landlord's costs just went up too.
                         </div>
                         <div class="fnews-actions">
-                            <button class="ai-btn past-btn" onclick="toggleSummary(this, 'bond-past')">⏪ What happened before</button>
-                            <button class="ai-btn future-btn" onclick="toggleSummary(this, 'bond-future')">⏩ What could happen next</button>
+                            <button class="ai-btn past-btn" onclick="toggleSummary(this, 'bond-past')">⏪ Past</button>
+                            <button class="ai-btn future-btn" onclick="toggleSummary(this, 'bond-future')">⏩ Future</button>
                         </div>
                         <div id="bond-past" class="ai-summary past-summary">
                             <div class="ai-label past">Similar past events</div>

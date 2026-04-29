@@ -1,9 +1,15 @@
-1. make some mock finance news underneath the dashboard
-2. use knowledge to termine how to best include these two features: I.turn the finance news
-into simple langue(i.e. how would it impact the gas price and everyday price,
-would it cost more to take loan（then just saying interests go high)) II. include buttons
-to make AI summary for what happen with similar news in the past and what could
-go for future 
+I. Reorder log.md to display the latest log content at the top.
+II. Preserve all original design completely with no modifications.
+III. Do not generate new HTML files. Only perform in-place edits, then rename the file as MMDDYY_TIMERN_model_used (date + timer number separated from model name by underscore).
+IV. Create/update log.md (generate if missing): record all used prompts, external instructions, original filename and new filename.
+V. Once finished, update completion checkmarks for corresponding tasks in next.txt. DO NOT PLACE CHECKMARKS ON ROMAN NUMBERED ITEMS.
+VI. Never re-read or re-visit a file after the tasks are successfully done for this specific file unless other tasks need to check back.
+VII. After completing the last task, output a single one-line confirmation and halt. No summary, no directory listing, no re-check.
+VIII. Syntax Filtering: Ignore any string contained within < > (treat them as non-functional placeholders).
 
-take the newest file on current path(do not look into any other folders) and write it to new file and mark the model use on new file and daytime seperated 
-by _
+Target file: <The most recently generated html>
+Complete all pre-checked tasks strictly:
+1. ✅ take the pro in the comparison
+2. ✅ remove things between the dashbaord and what it means for you
+3. ✅ What happen before change to past and what could happen next change to future
+4. ✅ save the file to the root of the current working directory with timestamp_modelused naming
